@@ -1,0 +1,89 @@
+/* Colours */
+
+:root {
+    --main-red: #ff0000;
+    --main-yellow: #ffff00;
+}
+
+@media (prefers-color-scheme: dark) {
+
+    /* Apply dark theme styles here */
+    :root {
+        --main-bg: #222333;
+        --main-text: #fff;
+        --alt-bg: #444566;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+
+    /* Apply light theme styles here */
+    :root {
+        --main-bg: #e2eef9;
+        --main-text: #000000;
+        --alt-bg: #cfeaff;
+    }
+}
+
+
+@media only screen and (max-width: 800px) {
+
+    /* For mobile phones: */
+    #start {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-left: 0% !important;
+        justify-content: center;
+        height: 100vh;
+
+    }
+
+    .big-button {
+        width: 60% !important;
+        height: 8vh;
+    }
+}
+
+body {
+    background-color: var(--main-bg);
+    color: var(--main-text);
+    font-family: sans-serif;
+}
+
+#start {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20%;
+    justify-content: center;
+    height: 100vh;
+    gap: 20px;
+}
+
+.big-button {
+    padding: 10px;
+    width: 20%;
+    height: 8vh;
+    font-size: 2.5vh;
+    font-weight: bold;
+    border-radius: 2.5vh;
+    border: 3px outset #888;
+    background: url(img/thin-half-line-red.png), url(img/thin-half-line-yellow.png), var(--alt-bg);
+    background-size: contain, contain, cover;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position-x: 150%, -50%, center;
+    background-origin: content-box;
+    color: var(--main-text);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.big-button:hover {
+    background-position: left center, right center, center;
+    border-radius: 1vh;
+}
+
+.big-button:active {
+    border-style: inset;
+    background-position: center, center, center;
+}
