@@ -12,6 +12,7 @@
         --main-bg: #222333;
         --main-text: #fff;
         --alt-bg: #444566;
+        --alt-text: #ccc;
     }
 }
 
@@ -22,47 +23,54 @@
         --main-bg: #e2eef9;
         --main-text: #000000;
         --alt-bg: #cfeaff;
+        --alt-text: #333;
     }
 }
 
 
-@media only screen and (max-width: 800px) {
 
-    /* For mobile phones: */
-    #start {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-left: 0% !important;
-        justify-content: center;
-        height: 100vh;
-
-    }
-
-    .big-button {
-        width: 60% !important;
-        height: 8vh;
-    }
-}
 
 body {
     background-color: var(--main-bg);
     color: var(--main-text);
     font-family: sans-serif;
+    transition: 1s;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.screenDiv {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--main-bg);
+    color: var(--main-text);
 }
 
 #start {
     display: flex;
     flex-direction: column;
-    padding-left: 20%;
     justify-content: center;
-    height: 100vh;
     gap: 20px;
+    transition: opacity 0.8s ease;
+}
+
+#logo {
+    width: 10vw;
+    margin-left: 30vw;
 }
 
 .big-button {
     padding: 10px;
-    width: 20%;
+    margin-left: 25vw;
+    width: 20vw;
     height: 8vh;
     font-size: 2.5vh;
     font-weight: bold;
@@ -72,18 +80,231 @@ body {
     background-size: contain, contain, cover;
     background-repeat: no-repeat, no-repeat, no-repeat;
     background-position-x: 150%, -50%, center;
+    /* background is off the screen */
     background-origin: content-box;
     color: var(--main-text);
     transition: 0.3s;
     cursor: pointer;
 }
 
-.big-button:hover {
-    background-position: left center, right center, center;
-    border-radius: 1vh;
+#bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 96px;
+    height: 100vh;
+    border-right: 3px solid var(--main-text);
+    background-color: var(--alt-bg);
+    padding: 0;
+    margin: 0;
+    transition: 0.3s;
+    transform: rotateY(0deg);
+    transform-origin: left;
+    z-index: 255;
 }
 
-.big-button:active {
-    border-style: inset;
-    background-position: center, center, center;
+#bar.hidden {
+    transform: rotateY(90deg);
+}
+
+#barList {
+    list-style-type: none;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    padding-top: 16px;
+}
+
+#barList>li {
+    width: 96px;
+    height: 96px;
+    margin-bottom: 16px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.3, -1.2, 0.2, 2.5);
+}
+
+#barList>li>img {
+    width: 64px;
+    height: 64px;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+#levelSelect {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    overflow: scroll;
+    transition: all 0.4s cubic-bezier(0.5, 0.5, 0.2, 1.2);
+}
+
+#levelSelect.hidden {
+    transform: translateY(100vh);
+}
+
+.levelSection {
+    margin: 0;
+    width: 60vw;
+    border: 3px outset var(--alt-text);
+    height: 3vh;
+    padding: 2vh;
+    border-radius: 2.5vh;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.3, -1.2, 0.2, 2);
+    background-color: var(--alt-bg);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.levelSection>img.dropdown {
+    width: 4vh;
+    height: 4vh;
+    transform: translateY(-0.5vh) rotate(0deg);
+    transition: inherit;
+    display: inline-block;
+}
+
+.levelSection>h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 3vh;
+    display: inline-block;
+    transform: translateY(-1.5vh);
+}
+
+.levelSection>.description {
+    display: none;
+    margin-top: 0.5vh;
+    font-size: 2vh;
+    color: var(--alt-text);
+    margin-left: 4.5vh;
+}
+
+.levelSection>.progress {
+    float: right;
+    margin-top: 0.3vh;
+    font-size: 2vh;
+    color: var(--alt-text);
+    transition: inherit;
+}
+
+.levelSection>ul {
+    display: none;
+}
+
+.levelSection.open {
+    height: 7vh;
+}
+
+.levelSection.open>.progress {
+    margin-top: 2vh;
+}
+
+.levelSection.open>.description {
+    display: block;
+}
+
+.levelSection.open>img.dropdown {
+    transform: translateY(1.5vh) rotate(90deg) !important;
+}
+
+@media only screen and (max-width: 800px) {
+
+    /* For mobile phones: */
+    #start {
+        align-items: center;
+    }
+
+    #logo {
+        width: 40vw;
+        margin-left: 0;
+    }
+
+    .big-button {
+        width: 60vw;
+        margin-left: 0%;
+        height: 8vh;
+    }
+
+    #bar {
+        top: auto;
+        bottom: 0;
+        width: 100vw;
+        height: 96px;
+        border-right: none;
+        border-top: 3px solid var(--main-text);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        transform: rotateX(0deg);
+        transform-origin: bottom;
+    }
+
+    #bar.hidden {
+        transform: rotateX(90deg);
+    }
+
+    #barList {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        padding: 0;
+        margin: 0;
+    }
+
+    #barList>li {
+        width: 64px;
+        height: 64px;
+        margin-bottom: 0;
+    }
+
+    #barList>li>img {
+        width: 48px;
+        height: 48px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+@media(hover: hover) and (pointer: fine) {
+
+    /* For devices that support hover (e.g., desktops with a mouse): */
+    #barList>li:hover {
+        transform: scale(1.1);
+    }
+
+    .big-button:hover {
+        background-position: left center, right center, center;
+        /* background becomes visible */
+        border-radius: 1vh;
+    }
+
+    .big-button:active {
+        border-style: inset;
+        background-position: center, center, center;
+    }
+
+    .levelSection:hover {
+        height: 7vh;
+    }
+
+    .levelSection:hover>.progress {
+        margin-top: 2vh;
+    }
+
+    .levelSection:hover>.description {
+        display: block;
+    }
+
+    .levelSection:hover>img.dropdown {
+        transform: translateY(1.3vh);
+    }
 }

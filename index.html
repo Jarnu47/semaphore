@@ -11,12 +11,43 @@
 </head>
 
 <body>
-    <div id="start">
-        <h1>bob</h1>
-        <button class="big-button" id="start-button">Start</button>
-        <button class="big-button">Levels</button>
+
+    <div id="start" class="screenDiv">
+        <img src="img/icons/logo.png" id="logo">
+        <button class="big-button">Start</button>
+        <button class="big-button" onClick="openLevelSelect()">Levels</button>
         <button class="big-button">Settings</button>
         <a href="https://github.com/Jarnu47/semaphore" target="_blank"><button class="big-button">About</button></a>
+    </div>
+
+    <div id="bar" class="hidden">
+        <ul id="barList">
+            <li>
+                <img src="img/icons/lightbulb.png">
+                Learn
+            </li>
+            <li>
+                <img src="img/icons/plant.png">
+                Practice
+            </li>
+        </ul>
+    </div>
+
+    <div id="levelSelect" class="screenDiv hidden">
+        <h1>Level Select</h1>
+        <div class="levelSection" onClick="openSection(this);">
+            <span class="progress">37% complete</span>
+            <img src="img/icons/dropdown.png" class="dropdown">
+            <h2>Test Section</h2>
+            <span class="description">This is a test section.</span>
+            <ul>
+                <li class="level">
+                    <h4>Level 1</h4>
+                    <span class="description">This is a test level.</span>
+                    <span class="progress">37% complete</span>
+                </li>
+            </ul>
+        </div>
     </div>
 </body>
 
