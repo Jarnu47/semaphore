@@ -148,43 +148,51 @@ html {
 
 .levelSection {
     margin: 0;
+    padding: 0;
+    transition: all 0.3s cubic-bezier(0.3, -1.2, 0.2, 2);
+}
+
+.levelSection>.top {
+    margin: 0;
     width: 60vw;
     border: 3px outset var(--alt-text);
     height: 3vh;
     padding: 2vh;
     border-radius: 2.5vh;
     justify-content: center;
-    transition: all 0.3s cubic-bezier(0.3, -1.2, 0.2, 2);
+    transition: inherit;
     background-color: var(--alt-bg);
     overflow: hidden;
     cursor: pointer;
 }
 
-.levelSection>img.dropdown {
+.levelSection>.top>img.dropdown {
     width: 4vh;
     height: 4vh;
     transform: translateY(-0.5vh) rotate(0deg);
     transition: inherit;
     display: inline-block;
+    float: left;
 }
 
-.levelSection>h2 {
+.levelSection>.top>h2 {
     margin: 0;
     padding: 0;
     font-size: 3vh;
     display: inline-block;
-    transform: translateY(-1.5vh);
+    transform: translateY(-0.3vh);
+    margin-left: 0.8vw;
 }
 
-.levelSection>.description {
-    display: none;
+.levelSection>.top>.description {
     margin-top: 0.5vh;
     font-size: 2vh;
     color: var(--alt-text);
-    margin-left: 4.5vh;
+    margin-left: 3vw;
+    display: none;
 }
 
-.levelSection>.progress {
+.levelSection>.top>.progress {
     float: right;
     margin-top: 0.3vh;
     font-size: 2vh;
@@ -193,23 +201,95 @@ html {
 }
 
 .levelSection>ul {
-    display: none;
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    width: 60vw;
+    border: 3px outset var(--alt-text);
+    padding: 2vh;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-radius: 2.5vh;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: none;
+    justify-content: center;
+    transition: inherit;
+    background-color: var(--alt-bg);
+    cursor: pointer;
+    transform: rotateX(90deg);
+    transform-origin: top;
+
 }
 
-.levelSection.open {
+.levelSection.open>.top {
     height: 7vh;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: none;
 }
 
-.levelSection.open>.progress {
+.levelSection.open>.top>.progress {
     margin-top: 2vh;
 }
 
-.levelSection.open>.description {
+.levelSection.open>.top>.description {
     display: block;
 }
 
-.levelSection.open>img.dropdown {
+.levelSection.open>.top>img.dropdown {
     transform: translateY(1.5vh) rotate(90deg) !important;
+}
+
+.levelSection.open>ul {
+    transform: none;
+}
+
+li.level {
+    border-top: 1px solid var(--alt-text);
+    margin: 0;
+    padding: 0;
+    padding-bottom: 2vh;
+    background-image: url(img/icons/dropdown.png);
+    background-size: 4vh 4vh;
+    background-repeat: no-repeat;
+    background-position: left -8vh center;
+    transition: inherit;
+}
+
+li.level>h4 {
+    margin: 0;
+    padding: 0;
+    font-size: 2.5vh;
+    margin-top: 1.8vh;
+    margin-left: 3vw;
+    display: inline-block;
+}
+
+li.level>.difficulty {
+    margin: 0;
+    margin-left: 0.5vw;
+    padding: 0;
+    font-size: 1.8vh;
+    transform: translateY(-0.3vh);
+    display: inline-block;
+    color: var(--alt-text);
+}
+
+li.level>.description {
+    margin-top: 0.7vh;
+    font-size: 2vh;
+    color: var(--alt-text);
+    margin-left: 3vw;
+    display: block;
+}
+
+li.level>.progress {
+    float: right;
+    margin-top: 3.5vh;
+    font-size: 2vh;
+    color: var(--alt-text);
+    transition: inherit;
 }
 
 @media only screen and (max-width: 800px) {
@@ -272,6 +352,26 @@ html {
         margin-left: 0;
         margin-right: 0;
     }
+
+    .levelSection>.top {
+        height: 7vh;
+    }
+
+    .levelSection>.top>.progress {
+        margin-top: 2vh;
+    }
+
+    .levelSection>.top>.description {
+        display: block;
+    }
+
+    .levelSection>.top>img.dropdown {
+        transform: translateY(1.3vh);
+    }
+
+    li.level {
+        background-position: left center;
+    }
 }
 
 @media(hover: hover) and (pointer: fine) {
@@ -292,19 +392,23 @@ html {
         background-position: center, center, center;
     }
 
-    .levelSection:hover {
+    .levelSection>.top:hover {
         height: 7vh;
     }
 
-    .levelSection:hover>.progress {
+    .levelSection>.top:hover>.progress {
         margin-top: 2vh;
     }
 
-    .levelSection:hover>.description {
+    .levelSection>.top:hover>.description {
         display: block;
     }
 
-    .levelSection:hover>img.dropdown {
+    .levelSection>.top:hover>img.dropdown {
         transform: translateY(1.3vh);
+    }
+
+    li.level:hover {
+        background-position: left center;
     }
 }
